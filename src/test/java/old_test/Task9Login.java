@@ -1,5 +1,6 @@
+package old_test;
+
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
@@ -41,14 +42,13 @@ public class Task9Login {
                     .andReturn();
 
             //Нахожу верный пароль и прерываю цикл
-           if(checkCookie.print().equals("You are authorized")) {
-               System.out.println("successful password = "+password[i]);
+            if(checkCookie.asString().equals("You are authorized")){
+                System.out.println("successful password = "+password[i]);
                break;
-           }
+            }
 
 
-
-      }
+        }
 
 
 

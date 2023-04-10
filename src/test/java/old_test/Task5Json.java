@@ -1,3 +1,5 @@
+package old_test;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -25,11 +27,11 @@ public class Task5Json {
                 .jsonPath();
 
         Map<String, String> params = new HashMap<>();
-       // response.prettyPrint();
+        response.prettyPrint();
         params = response.get("messages[1]");
-//        System.out.println(params);
-//        String answer = params.get("message");
-//        System.out.println(answer);
+        System.out.println(params);
+       String answer = params.get("message");
+        System.out.println(answer);
         System.out.println(params.get("message"));
     }
 }

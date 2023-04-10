@@ -1,6 +1,7 @@
+package old_test;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.http.Headers;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
