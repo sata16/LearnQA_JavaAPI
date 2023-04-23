@@ -18,7 +18,7 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
-    @Step("Make a POST-request-JsonPath")
+    @Step("Make a POST-request-Json")
     public JsonPath makePostJsonRequest(String url, Map<String, String> authData){
         return given()
                 .filter(new AllureRestAssured())

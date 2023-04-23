@@ -67,7 +67,7 @@ public class UserGetTest extends BaseTestCase {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = apiCoreRequests
                 .makePostJsonRequest("https://playground.learnqa.ru/api/user/", userData);
-     responseCreateAuth.prettyPrint();
+     //responseCreateAuth.prettyPrint();
         String userId = responseCreateAuth.getString("id");
 
 

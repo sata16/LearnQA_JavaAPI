@@ -40,8 +40,8 @@ public class Assertions {
         }
     }
     //неавториз пользоват неполучает какое-то поле
-    public static void assertJsonHasNotField(Response Response, String unexpectidFieldName){
-        Response.then().assertThat().body("$", not(hasKey(unexpectidFieldName)));
+    public static void assertJsonHasNotField(Response Response, String unexpectedFieldName){
+        Response.then().assertThat().body("$", not(hasKey(unexpectedFieldName)));
     }
 //некорректный формат
 
