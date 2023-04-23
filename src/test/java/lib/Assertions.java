@@ -3,6 +3,7 @@ package lib;
 import io.restassured.response.Response;
 
 import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Assertions {
@@ -29,10 +30,21 @@ public class Assertions {
         );
     }
     //проверим, что при создании пользователя приходит поле с именем id
-    public static void assertJsonHasKey(Response Response, String expectidFileName){
-        Response.then().assertThat().body("$", hasKey(expectidFileName));
+    public static void assertJsonHasField(Response Response, String expectidFieldName){
+        Response.then().assertThat().body("$", hasKey(expectidFieldName));
+    }
+    //перебираем сразу все значения
+    public static  void assertJsonHasFields(Response Response, String[] expectedFieldNames){
+        for (String expectedFieldName : expectedFieldNames){
+            Assertions.assertJsonHasField(Response, expectedFieldName);
+        }
+    }
+    //неавториз пользоват неполучает какое-то поле
+    public static void assertJsonHasNotField(Response Response, String unexpectidFieldName){
+        Response.then().assertThat().body("$", not(hasKey(unexpectidFieldName)));
     }
 //некорректный формат
+
     public static void assertResponseFormatEmail(Response Response, String expectedAnswer){
         assertEquals(
                 expectedAnswer,

@@ -2,6 +2,7 @@ package lib;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.Map;
@@ -16,6 +17,14 @@ public class ApiCoreRequests {
                 .body(authData)
                 .post(url)
                 .andReturn();
+    }
+    @Step("Make a POST-request-JsonPath")
+    public JsonPath makePostJsonRequest(String url, Map<String, String> authData){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(authData)
+                .post(url)
+                .jsonPath();
     }
 
 }

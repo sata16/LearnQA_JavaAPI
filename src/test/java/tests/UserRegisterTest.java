@@ -2,7 +2,6 @@ package tests;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import lib.ApiCoreRequests;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 
@@ -80,7 +78,7 @@ public class UserRegisterTest extends BaseTestCase {
 
         System.out.println(responseCreateAuth.asString());
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
-        Assertions.assertJsonHasKey(responseCreateAuth,"id");
+        Assertions.assertJsonHasField(responseCreateAuth,"id");
 
     }
 //создаем пользователя с помощью DataGeneration getRegistrationData
@@ -97,7 +95,7 @@ public class UserRegisterTest extends BaseTestCase {
 
         //System.out.println(responseCreateAuth.asString());
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
-        Assertions.assertJsonHasKey(responseCreateAuth,"id");
+        Assertions.assertJsonHasField(responseCreateAuth,"id");
 
     }
 
