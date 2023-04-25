@@ -2,7 +2,6 @@ package lib;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -45,6 +44,26 @@ public class ApiCoreRequests {
                         .header("x-csrf-token", header)
                         .cookie("auth_sid", cookie)
                         .get(url + id)
+                        .andReturn();
+    }
+    @Step("Make delete-request Int ID")
+    public Response makeDeleteRequestIdInt(String url, String header, String cookie, int id) {
+        return
+                given()
+                        .filter(new AllureRestAssured())
+                        .header("x-csrf-token", header)
+                        .cookie("auth_sid", cookie)
+                        .delete(url + id)
+                        .andReturn();
+    }
+    @Step("Make delete-request String ID")
+    public Response makeDeleteRequestIdString(String url, String header, String cookie, String id) {
+        return
+                given()
+                        .filter(new AllureRestAssured())
+                        .header("x-csrf-token", header)
+                        .cookie("auth_sid", cookie)
+                        .delete(url + id)
                         .andReturn();
     }
 
