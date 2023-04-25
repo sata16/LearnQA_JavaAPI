@@ -1,5 +1,7 @@
 package tests;
-
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -12,10 +14,15 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+@Epic("User cases")
+@Feature("Delete")
+
 public class UserDeleteTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
     @Test
-    @DisplayName("Удалить пользователя в ID=2")
+    @Description("Попытку удалить пользователя по ID, после авторизации под другим. " +
+            "Его данные для авторизации: (vinkotov@example.com / 1234)")
+    @DisplayName("Удалить пользователя c ID=2")
     public void testDeleteUserId2(){
 
         //login
@@ -44,6 +51,9 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @Description("Создать пользователя, авторизоваться из-под него, удалить, " +
+            "затем попробовать получить его данные по ID и убедиться, что пользователь " +
+            "действительно удален.")
     @DisplayName("Создать-Авторизоваться-Удалить-Проверить")
     public  void testDeleteAuthUser(){
         //  data user
@@ -81,7 +91,9 @@ public class UserDeleteTest extends BaseTestCase {
         }
 
         @Test
-        @DisplayName("Удалить пользователя, будучи авторизованными другим пользователем")
+        @Description("Негативный кейс, попробовать удалить пользователя, " +
+                "будучи авторизованными другим пользователем.")
+        @DisplayName("Удалить пользователя")
     public void checkDeleteWithAnotherUser(){
             //  data for user1
             Map<String, String> userData1 = DataGenerator.getRegistrationData();
